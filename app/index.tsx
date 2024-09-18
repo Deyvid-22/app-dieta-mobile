@@ -8,7 +8,7 @@ export default function Index() {
     <View style={styles.container}>
       <Image source={require("../assets/images/logo.png")} />
       <Text style={styles.title}>
-        Dieta <Text style={{ color: colors.white }}>.AI</Text>
+        Dieta<Text style={{ color: colors.white }}>.AI</Text>
       </Text>
 
       <Text style={styles.text}>
