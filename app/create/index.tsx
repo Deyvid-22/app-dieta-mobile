@@ -1,16 +1,18 @@
-import { Text, View, StyleSheet, Pressable, ScrollView } from "react-native";
+import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native";
 
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { colors } from "@/constants/colors";
+import { colors } from "../../constants/colors";
 import { Header } from "@/components/header";
-import { Select } from "@/components/input/select";
+import { Select } from "../../components/input/select";
+import { useDataStore } from "../../store/data";
+import { router } from "expo-router";
 
 const schema = z.object({
   gender: z.string().min(1, { message: "O sexo é obrigatório" }),
-  objective: z.string().min(1, { message: "Objetivo é obrigatório" }),
-  level: z.string().min(1, { message: "Selecione seu level " }),
+  objective: z.string().min(1, { message: "O Objetivo é obrigatório" }),
+  level: z.string().min(1, { message: "Selecione seu level" }),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -24,16 +26,11 @@ export default function Create() {
     resolver: zodResolver(schema),
   });
 
+  const setPageTwo = useDataStore((state) => state.setPageTwo);
+
   const genderOptions = [
     { label: "Masculino", value: "masculino" },
     { label: "Feminino", value: "feminino" },
-  ];
-
-  const objectiveOptions = [
-    { label: "Emagrecer", value: "emagrecer" },
-    { label: "Hipertrofia", value: "Hipertrofia" },
-    { label: "Hipertrofia + Definição", value: "Hipertrofia e Definição" },
-    { label: "Definição", value: "Definição" },
   ];
 
   const levelOptions = [
@@ -55,8 +52,21 @@ export default function Create() {
     },
   ];
 
+  const objectiveOptions = [
+    { label: "Emagrecer", value: "emagrecer" },
+    { label: "Hipertrofia", value: "Hipertrofia" },
+    { label: "Hipertrofia + Definição", value: "Hipertrofia e Definição" },
+    { label: "Definição", value: "Definição" },
+  ];
+
   function handleCreate(data: FormData) {
-    console.log(data);
+    setPageTwo({
+      level: data.level,
+      gender: data.gender,
+      objective: data.objective,
+    });
+
+    router.push("/nutrition");
   }
 
   return (
@@ -68,23 +78,25 @@ export default function Create() {
         <Select
           control={control}
           name="gender"
-          placeholder="Selecione o seu sexo"
+          placeholder="Selecione o seu sexo..."
           error={errors.gender?.message}
           options={genderOptions}
         />
-        <Text style={styles.label}>Selecione o nivel de atividade visica:</Text>
+
+        <Text style={styles.label}>Selecione nível de atividade física:</Text>
         <Select
           control={control}
           name="level"
-          placeholder="Selecione o nivel de atividade fisica"
+          placeholder="Selecione o nível de atividade física"
           error={errors.level?.message}
           options={levelOptions}
         />
-        <Text style={styles.label}>Selecione o seu objetivo:</Text>
+
+        <Text style={styles.label}>Selecione seu objetivo:</Text>
         <Select
           control={control}
           name="objective"
-          placeholder="Selecione o seu objetivo"
+          placeholder="Selecione o nível de atividade física"
           error={errors.objective?.message}
           options={objectiveOptions}
         />
@@ -102,15 +114,15 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.background,
   },
-  content: {
-    paddingLeft: 16,
-    paddingRight: 16,
-  },
   label: {
     fontSize: 16,
     color: colors.white,
-    fontWeight: "black",
+    fontWeight: "bold",
     marginBottom: 8,
+  },
+  content: {
+    paddingLeft: 16,
+    paddingRight: 16,
   },
   button: {
     backgroundColor: colors.blue,
@@ -121,7 +133,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: colors.white,
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: "bold",
   },
 });

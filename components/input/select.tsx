@@ -6,9 +6,8 @@ import {
   FlatList,
   Modal,
 } from "react-native";
-
 import { Controller } from "react-hook-form";
-import { colors } from "@/constants/colors";
+import { colors } from "../../constants/colors";
 import { Feather } from "@expo/vector-icons";
 import { useState } from "react";
 
@@ -28,8 +27,8 @@ interface SelectProps {
 export function Select({
   name,
   control,
-  error,
   placeholder,
+  error,
   options,
 }: SelectProps) {
   const [visible, setVisible] = useState(false);
@@ -47,11 +46,12 @@ export function Select({
             >
               <Text>
                 {value
-                  ? options.find((options) => options.value === value)?.label
+                  ? options.find((option) => option.value === value)?.label
                   : placeholder}
               </Text>
               <Feather name="arrow-down" size={16} color="#000" />
             </TouchableOpacity>
+
             <Modal
               visible={visible}
               animationType="fade"
@@ -70,7 +70,7 @@ export function Select({
                     keyExtractor={(item) => item.value.toString()}
                     renderItem={({ item }) => (
                       <TouchableOpacity
-                        style={styles.options}
+                        style={styles.option}
                         onPress={() => {
                           onChange(item.value);
                           setVisible(false);
@@ -86,6 +86,7 @@ export function Select({
           </>
         )}
       />
+
       {error && <Text style={styles.errorText}>{error}</Text>}
     </View>
   );
@@ -125,10 +126,10 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 20,
   },
-  options: {
+  option: {
     paddingVertical: 14,
-    paddingHorizontal: 4,
-    backgroundColor: "rgba(240, 240, 240, 240)",
+    backgroundColor: "rgba(208, 208, 208, 0.40)",
     borderRadius: 4,
+    paddingHorizontal: 8,
   },
 });

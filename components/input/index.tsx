@@ -5,9 +5,8 @@ import {
   TextInput,
   KeyboardTypeOptions,
 } from "react-native";
-
 import { Controller } from "react-hook-form";
-import { colors } from "@/constants/colors";
+import { colors } from "../../constants/colors";
 
 interface InputProps {
   name: string;
@@ -21,28 +20,29 @@ interface InputProps {
 export function Input({
   name,
   control,
-  keyboardType,
-  error,
   placeholder,
   rules,
+  error,
+  keyboardType,
 }: InputProps) {
   return (
     <View style={styles.container}>
       <Controller
         control={control}
-        rules={rules}
         name={name}
+        rules={rules}
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
+            style={styles.input}
             placeholder={placeholder}
             onBlur={onBlur}
             value={value}
             onChangeText={onChange}
             keyboardType={keyboardType}
-            style={styles.input}
           />
         )}
       />
+
       {error && <Text style={styles.errorText}>{error}</Text>}
     </View>
   );
