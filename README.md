@@ -1,50 +1,16 @@
-# Welcome to your Expo app 👋
+# Dieta.Ai
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
-## Get started
 
-1. Install dependencies
+O DietApp é um aplicativo móvel que auxilia os usuários na criação de planos de dieta personalizados. Ele coleta dados como altura, idade e peso e se conecta a um backend que utiliza a API do Gemini para gerar recomendações alimentares adaptadas às necessidades individuais de cada usuário.
 
-   ```bash
-   npm install
-   ```
+## Tecnologias Utilizadas
 
-2. Start the app
+- React Native Para desenvolvimento do aplicativo móvel.
+- Node.js  Para o backend.
+- API do GeminiPara geração de dietas personalizadas.
+- Axios Para realizar requisições HTTP.
 
-   ```bash
-    npx expo start
-   ```
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+![Captura de tela 2024-09-19 131650](https://github.com/user-attachments/assets/029bbfdc-6691-4e9a-b56a-9ceec3ba8b1b)
+![Captura de tela 2024-09-19 131724](https://github.com/user-attachments/assets/8ba22e7d-5d12-4aad-9aa7-03a4707521cb)
